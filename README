@@ -1,0 +1,25 @@
+web-driver-spike
+================
+This project has been created as ruby + web-driver spike
+
+Author: Kamil Marek
+
+CONFIGURATION
+========================
+1/ install ruby 
+2/ gem install selenium-webdriver
+3/ configure credentials in lib/TestCase.rb
+
+HOW TO USE IT:
+==============
+1/ to run tests
+ruby run_tests.rb
+
+2/ to add new test cases
+- create new file in test_cases directory
+- add test to test suite in run_tests.rb
+
+Naming convention for test cases: 
+- SomeTestCase for class and file name
+- some_test_case for test case name stored in test suite, 
+it will be automatically converted into SomeTestCase format
