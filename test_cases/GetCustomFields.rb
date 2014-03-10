@@ -5,18 +5,17 @@ require 'pp'
 
 class GetCustomFields < TestCase
 
-	def test_procedure		
+	def test_procedure	
+		puts "Navigating to https://app.futuresimple.com/settings/leads"	
 		@browser.navigate.to "https://app.futuresimple.com/settings/leads"
-		
-		sleep 8
-		@browser.navigate.refresh
-		if @browser.title == "Base CRM: Customize Leads"
-			puts "Page 'Base CRM: Customize Leads' has been loaded."
-		else
-			puts("Page 'Base CRM: Customize Leads' is not loaded.")
-			puts "@browser.title: " + @browser.title
-			return false
-		end
+				
+		wait = Selenium::WebDriver::Wait.new(:timeout => 40) 
+		begin
+		 	wait.until { @browser.title == "Base CRM: Customize Leads" }
+		rescue
+			puts "Timeout reached. Actual page title: " + @browser.title
+		  	return false
+		end				
 
 		# bug: custom fields are not displayed 
 		# WORKAROUND: open contacts and leads again to display custom fields	

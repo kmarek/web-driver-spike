@@ -34,8 +34,7 @@ class TestSuite
 		if implemented?(class_name)
 			require "./test_cases/" + class_name + ".rb"
 
-			result = eval(class_name).new.run
-			puts "result: " + result.to_s
+			result = eval(class_name).new.run			
 			@results << result
 		else
 			puts "Test " + class_name + " is not implemented."
