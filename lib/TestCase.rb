@@ -49,7 +49,7 @@ class TestCase
 		
 		result = true
 		[r_setup, r_test_procedure, r_teardown].each { |part_result| 
-			if part_result = false
+			if part_result == false
 				result = false
 			end
 		}
