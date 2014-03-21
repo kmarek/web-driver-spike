@@ -11,6 +11,7 @@ class GetCustomFields < TestCase
 
 		puts "Custom fields [key => value]: " 
 		pp custom_fields_hash
+		set_result true
 	end
 
 	def get_custom_fields(browser)
@@ -22,7 +23,7 @@ class GetCustomFields < TestCase
 		 	wait.until { browser.title == "Base CRM: Customize Leads" }
 		rescue
 			puts "Timeout reached. Actual page title: " + browser.title
-		  	return false
+		  	set_result false
 		end				
 
 		# bug: custom fields are not displayed 
@@ -50,6 +51,6 @@ class GetCustomFields < TestCase
 			}			
 		end
 
-		return custom_fields_hash
+		custom_fields_hash
 	end
 end

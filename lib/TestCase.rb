@@ -2,7 +2,14 @@
 
 require "selenium-webdriver"
 
-class TestCase
+class TestCase	
+	def initialize
+		@result = true
+	end
+
+	def set_result(result)
+		@result = @result && result
+	end
 
 	def name
 		__method__
@@ -22,9 +29,10 @@ class TestCase
 
 		page_title = @browser.title
 		if page_title == "Base CRM"
-			puts "Page '" + page_title + " has been loaded."
-			return true
+			set_result true
+			puts "Page '" + page_title + " has been loaded."			
 		else
+			set_result false
 			puts("Page 'Base CRM' is not loaded.")
 			self.teardown
 			exit
@@ -33,27 +41,20 @@ class TestCase
 
 	def test_procedure
 		#default test procedure, should be overriden in test case
+		set_result false
 	end
 
 	def teardown
 		# default teardown, can be overriden in test case
 		# close browser
 		@browser.close
-		return true
+		set_result true
 	end
 
-	def run
-		r_setup = self.setup
-		r_test_procedure = self.test_procedure
-		r_teardown = self.teardown
-		
-		result = true
-		[r_setup, r_test_procedure, r_teardown].each { |part_result| 
-			if part_result == false
-				result = false
-			end
-		}
-		
-		return result
+	def run		
+		setup
+		test_procedure
+		teardown
+		@result
 	end
 end

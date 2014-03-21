@@ -34,7 +34,7 @@ class TestSuite
 		if implemented?(class_name)
 			require "./test_cases/" + class_name + ".rb"
 
-			result = eval(class_name).new.run			
+			result = eval(class_name).new.run	
 			@results << result
 		else
 			puts "Test " + class_name + " is not implemented."
@@ -52,11 +52,12 @@ class TestSuite
 	end
 
 	def implemented?(class_name)
+		implemented = false
 		Dir.glob('./test_cases/*.rb').each {|file| 
 			if File.basename(file) == class_name + ".rb"							
-				return true
+				implemented = true
 			end
 		}
-		return false
+		implemented
 	end
 end

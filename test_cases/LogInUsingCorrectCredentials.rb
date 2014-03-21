@@ -3,10 +3,7 @@
 require "./lib/TestCase.rb"
 
 class LogInUsingCorrectCredentials < TestCase
-	def initialize
-	end
-
 	def test_procedure
-		return true
+		set_result true
 	end
 end
